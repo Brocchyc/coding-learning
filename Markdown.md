@@ -246,3 +246,96 @@ $$
 Ctrl+Shift+P搜索open snippet directory
 
 已经copy文件markdown.hsnips
+
+# 云端上传笔记
+## git入门
+git入门参考[这篇文章](https://www.liaoxuefeng.com/wiki/896043488029600/896202815778784)
+
+### 初始化仓库
+创建一个文件夹，鼠标右键git bash here
+
+初始化仓库
+```git
+$ git init
+```
+
+添加文件
+```git
+$ git add <filename>
+```
+
+提交改动
+```git
+$ git commit -m <message>
+```
+![图示](image/2021-07-10-11-05-12.png)git add命令实际上就是把要提交的所有修改放到暂存区（Stage），然后，执行git commit就可以一次性把暂存区的所有修改提交到分支。
+### 回溯历史版本
+查看版本日志
+```git
+git log
+```
+
+版本更改
+```git
+git reset --hard commit_id
+```
+
+查看命令日志
+```git
+git reflog
+```
+
+### 撤销修改
+丢弃工作区的修改：
+```
+git checkout -- file
+```
+
+如果工作区的修改已经被提交，先恢复暂存区
+```git
+git reset HEAD <file>
+git checkout -- <file>
+```
+
+查看当前状态
+``` git
+git status
+```
+
+查看工作区和版本库里面最新版本的区别
+```git
+git diff HEAD -- readme.txt
+```
+
+### 删除文件
+rm删除工作区文件
+此后有两种选择：
+1. 继续删除操作
+   此时暂存区中文件还未被删除，git rm将删除暂存区中文件。再git commit则将删除操作更新到版本库
+2. 撤销删除
+   $ git checkout -- test.txt
+   事实上git checkout是用版本库里的版本替换工作区的版本，即“一键还原工作区”
+
+### github远程库
+根据[这篇文章](https://www.liaoxuefeng.com/wiki/896043488029600/898732864121440)进行配置
+
+要关联一个远程库，使用命令
+```git
+git remote add origin git@server-name:path/repo-name.git；
+```
+
+关联一个远程库时必须给远程库指定一个名字，origin是默认习惯命名；
+
+关联后，第一次推送master分支的所有内容
+```git
+git push -u origin master
+```
+
+
+
+此后，每次本地提交后，只要有必要，就可以使用命令推送最新修改
+```git
+it push origin master
+```
+
+
